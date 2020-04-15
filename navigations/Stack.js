@@ -13,7 +13,8 @@ export default () => {
                 headerBackTitleVisible : false,
                 headerStyle : {
                     backgroundColor : 'black',
-                    borderBottomWidth : 3,
+                    borderBottomColor : 'black',
+                    shadowColor : 'black'
                 }
             }}        
         >

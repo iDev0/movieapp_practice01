@@ -5,38 +5,40 @@ import {movieAPI} from '../Api'
 
 const MoviesContainer = () => {
 
-    // const [movies, setMovies] = useState({
-    //     nowPlaying : [],
-    //     nowPlayingError : null,
-    //     popular : [],
-    //     popularError : null,
-    //     upcoming : [],
-    //     upcomingError : null
-    // })
+    const [movies, setMovies] = useState({
+        loading : true,
+        nowPlaying : [],
+        nowPlayingError : null,
+        popular : [],
+        popularError : null,
+        upcoming : [],
+        upcomingError : null
+    })
 
-    // const getData = async () => {
+    const getData = async () => {
 
-    //     const [nowPlaying, nowPlayingError] = await movieAPI.nowPlaying()
-    //     const [popular, popularError] = await movieAPI.popular()
-    //     const [upcoming, upcomingError] = await movieAPI.upcoming()
+        const [nowPlaying, nowPlayingError] = await movieAPI.nowPlaying()
+        const [popular, popularError] = await movieAPI.popular()
+        const [upcoming, upcomingError] = await movieAPI.upcoming()
 
-    //     setMovies({
-    //         nowPlaying,
-    //         nowPlayingError,
-    //         popular,
-    //         popularError,
-    //         upcoming,
-    //         upcomingError
-    //     })
-    // }
+        setMovies({
+            loading : false,
+            nowPlaying,
+            nowPlayingError,
+            popular,
+            popularError,
+            upcoming,
+            upcomingError
+        })
+    }
 
 
-    // useEffect(() => {
-    //     getData()
-    // }, [])
+    useEffect(() => {
+        getData()
+    }, [])
 
     return (
-        <MoviesPresenter/>
+        <MoviesPresenter {...movies}/>
     )
 }
 
