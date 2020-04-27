@@ -8,7 +8,8 @@ import Title from '../components/Title'
 import Vertical from '../components/Vertical'
 import ScrollContainer from '../components/ScrollContainer'
 import Horizontal from '../components/Horizontal'
-
+import List from '../components/List'
+import HorizontalSlider from '../components/HorizontalSlider'
 
 const {width, height} = Dimensions.get('screen')
 
@@ -20,10 +21,6 @@ const SlideContainer = styled.View`
     height : ${height/4}px;
     margin-bottom : 50px;
 `;
-
-
-
-
 
 const MoviesPresenter = ({loading, nowPlaying, popular, upcoming}) => {
     return (
@@ -44,13 +41,7 @@ const MoviesPresenter = ({loading, nowPlaying, popular, upcoming}) => {
                     </Swiper>
                 </SlideContainer>
                 <Container>
-                    <Title title='인기 상영작'/>
-                    <ScrollView
-                        style={{marginTop : 20}}
-                        contentContainerStyle={{paddingLeft : 30}}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                    >
+                    <HorizontalSlider title='인기상영작'>
                         {popular.map(movie => (
                             <Vertical
                                 key={movie.id}
@@ -59,18 +50,19 @@ const MoviesPresenter = ({loading, nowPlaying, popular, upcoming}) => {
                                 vote={movie.vote_average}
                             />
                         ))}
-                    </ScrollView>
-                    <Title title='Comming Soon' />  
-                    {upcoming.map(movie => (
-                        <Horizontal
-                            key={movie.id}
-                            id={movie.id}
-                            poster={movie.poster_path}
-                            title={movie.title}
-                            overview={movie.overview}
-                            releaseDate={movie.release_date}
-                        />
-                    ))}                      
+                    </HorizontalSlider>
+                    <List title='Comming Soon'>
+                        {upcoming.map(movie => (
+                            <Horizontal
+                                key={movie.id}
+                                id={movie.id}
+                                poster={movie.poster_path}
+                                title={movie.title}
+                                overview={movie.overview}
+                                releaseDate={movie.release_date}
+                            />
+                        ))}
+                    </List>                      
                 </Container>                
             </>
         </ScrollContainer>
